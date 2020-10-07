@@ -46,3 +46,8 @@ h1 {
 .button:focus {
     outline: none;
 }
+
+.answer-list {
+    list-style: none;
+    padding: 0;
+}
