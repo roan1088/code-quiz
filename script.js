@@ -145,9 +145,27 @@ function endQuiz(score) {
         // Prevent default submission
         event.preventDefault();
         // Get users initial
-        // var userInitial = inputEl.value;
-        // Store users initial to local storage
-        // Redirect to highscores page                 
+        var userInitial = inputEl.value;
+        if (userInitial) {
+            // Turn all info into an object
+            var scoreObj = { initials: userInitial, score: score};
+            // console.log(userInitial);
+
+            // Store users initial to local storage   
+            // Check old highscores     
+            var highscoresList = JSON.parse(localStorage.getItem("code-quiz-highscores"));
+            // console.log(highscoresList);
+            if (highscoresList) {
+                highscoresList.push(scoreObj);
+            }
+            else {
+                highscoresList = [scoreObj];
+            }      
+            // console.log(highscoresList);
+            localStorage.setItem("code-quiz-highscores", JSON.stringify(highscoresList));
+            // Redirect to highscores page  
+            location.href = "highscores.html";  
+        }             
     });
 }
 
